@@ -1,3 +1,4 @@
+https://github.com/maxymrd87-rdf/pass_mgr.git
 # Отчет по проекту «Менеджер паролей»
 
 ## 1. Цели и задачи
