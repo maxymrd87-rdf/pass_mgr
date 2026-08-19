@@ -1,3 +1,8 @@
+"""
+Модуль для математического анализа надежности пароля.
+Оценивает стойкость на основе вычисления энтропии по Шеннону.
+"""
+
 import math
 import string
 
@@ -13,7 +18,7 @@ def calculate_entropy(password: str) -> float:
         return 0.0
 
     pool_size = 0
-    # Проверяем, какие наборы символов использованы, и увеличиваем мощность алфавита
+    # Проверка, наборов символов были использованы, мощность алфавита
     if any(c in string.ascii_lowercase for c in password):
         pool_size += 26
     if any(c in string.ascii_uppercase for c in password):
@@ -21,7 +26,7 @@ def calculate_entropy(password: str) -> float:
     if any(c in string.digits for c in password):
         pool_size += 10
         
-    # Учитываем наш расширенный пул спецсимволов из генератора
+    # Учитываем расширенный пул спецсимволов из генератора
     special_chars = "!@#$%^&*()_+-=[]{}|;:,.<>?"
     if any(c in special_chars for c in password):
         pool_size += len(special_chars)

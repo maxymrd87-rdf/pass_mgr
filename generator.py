@@ -1,3 +1,8 @@
+"""
+Модуль для криптографически стойкой генерации паролей.
+Использует системный источник энтропии (модуль secrets).
+"""
+
 import secrets
 import string
 
@@ -20,17 +25,17 @@ def generate_password(
     if length < 4:
         raise ValueError("Длина пароля должна быть не менее 4 символов.")
 
-    # Собираем разрешенный алфавит
+    # Сборка разрешенного алфавит
     alphabet = string.ascii_lowercase
     if use_upper:
         alphabet += string.ascii_uppercase
     if use_digits:
         alphabet += string.digits
     if use_special:
-        # Ограниченный набор спецсимволов для надежности и исключения конфликтов
+        # Добавлен ограниченный набор спецсимволов для надежности и исключения конфликтов
         alphabet += "!@#$%^&*()_+-=[]{}|;:,.<>?"
 
-    # Гарантируем, что пароль содержит хотя бы один символ из каждой выбранной категории
+    # Указание, что пароль содержит хотя бы один символ из каждой выбранной категории
     password_chars = [secrets.choice(string.ascii_lowercase)]
     if use_upper:
         password_chars.append(secrets.choice(string.ascii_uppercase))
@@ -39,7 +44,7 @@ def generate_password(
     if use_special:
         password_chars.append(secrets.choice("!@#$%^&*()_+-=[]{}|;:,.<>?"))
 
-    # Добиваем оставшуюся длину случайными символами из общего пула
+    # Комплит оставшейся длины случайными символами из общего пула
     remaining_length = length - len(password_chars)
     password_chars.extend(secrets.choice(alphabet) for _ in range(remaining_length))
 

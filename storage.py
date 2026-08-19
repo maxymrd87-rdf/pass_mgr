@@ -1,3 +1,8 @@
+"""
+Модуль локального хранилища паролей.
+Обеспечивает сохранение данных в формате JSON.
+"""
+
 import json
 import os
 from datetime import datetime

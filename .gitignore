@@ -4,3 +4,4 @@ __pycache__/
 *.key
 *.dat
 .DS_Store
+passwords.json
